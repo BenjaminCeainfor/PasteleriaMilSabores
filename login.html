@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesión - Pastelería Mil Sabores</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lato&family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="logo">Pastelería Mil Sabores</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="blogs.html">Blogs</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="header-derecha">
+      <a href="login.html">Iniciar sesión</a>
+      <a href="registro.html">Registrarse</a>
+      <a class="carrito-icono" href="carrito.html">🛒 <span id="contador-carrito">0</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h1 style="text-align:center; margin-top: 30px;">Iniciar sesión</h1>
+      <form class="formulario" id="form-login" novalidate>
+        <div class="campo">
+          <label for="login-correo">Correo</label>
+          <input type="email" id="login-correo" maxlength="100" placeholder="tucorreo@gmail.com">
+          <span class="mensaje-error" id="error-login-correo"></span>
+        </div>
+        <div class="campo">
+          <label for="login-clave">Contraseña</label>
+          <input type="password" id="login-clave" maxlength="10">
+          <span class="mensaje-error" id="error-login-clave"></span>
+        </div>
+        <button type="submit" class="btn">Iniciar sesión</button>
+        <p style="margin-top: 15px; font-size: 0.9rem;">¿No tienes cuenta? <a href="registro.html" style="color: var(--color-chocolate); font-weight: bold;">Regístrate aquí</a></p>
+      </form>
+    </section>
+
+  </main>
+  <footer>
+    <p>Pastelería Mil Sabores &copy; 2026 - Celebrando 50 años de tradición</p>
+    <p>Síguenos: <a href="#">Instagram</a> · <a href="#">Facebook</a></p>
+  </footer>
+
+  <script src="js/productos.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/validaciones.js"></script>
+
+</body>
+</html>
