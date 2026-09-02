@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi carrito - Pastelería Mil Sabores</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lato&family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="logo">Pastelería Mil Sabores</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="blogs.html">Blogs</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="header-derecha">
+      <a href="login.html">Iniciar sesión</a>
+      <a href="registro.html">Registrarse</a>
+      <a class="carrito-icono" href="carrito.html">🛒 <span id="contador-carrito">0</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="catalogo">
+      <h1>Mi carrito de compras</h1>
+      <br>
+      <!-- carrito.js dibuja aquí cada producto agregado -->
+      <div id="lista-carrito"></div>
+
+      <div class="resumen-carrito">
+        <h2>Total: <span id="total-carrito">$0</span></h2>
+        <br>
+        <button class="btn">Pagar</button>
+      </div>
+    </section>
+
+  </main>
+  <footer>
+    <p>Pastelería Mil Sabores &copy; 2026 - Celebrando 50 años de tradición</p>
+    <p>Síguenos: <a href="#">Instagram</a> · <a href="#">Facebook</a></p>
+  </footer>
+
+  <script src="js/productos.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/validaciones.js"></script>
+
+</body>
+</html>
