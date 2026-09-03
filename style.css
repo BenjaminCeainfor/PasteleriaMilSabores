@@ -1,0 +1,289 @@
+/* ============================================
+   Pastelería Mil Sabores - Hoja de estilos
+   Esta hoja se enlaza desde todas las páginas
+   con <link rel="stylesheet" href="css/style.css">
+   ============================================ */
+
+/* Reset simple: quitamos márgenes/rellenos por defecto del navegador */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* así el padding no rompe los anchos */
+}
+
+/* Variables de color con la paleta del caso (crema, rosa, chocolate) */
+:root {
+  --color-fondo: #fff5e1;      /* crema pastel */
+  --color-acento: #ffc0cb;     /* rosa suave */
+  --color-chocolate: #8b4513;  /* chocolate */
+  --color-texto: #5d4037;      /* marrón oscuro para texto principal */
+  --color-texto-claro: #7c6a63; /* texto secundario */
+  --color-blanco: #ffffff;
+}
+
+/* Fuentes: Lato para texto general, Pacifico para títulos */
+body {
+  font-family: 'Lato', Arial, sans-serif; /* si no carga Lato, usa Arial */
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6; /* espacio entre líneas para que se lea mejor */
+}
+
+/* Títulos usan la fuente cursiva de la marca */
+h1, h2, h3 {
+  font-family: 'Pacifico', cursive;
+  color: var(--color-chocolate);
+}
+
+/* Los enlaces no llevan subrayado por defecto */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%; /* que las imágenes nunca se salgan de su contenedor */
+  display: block;
+}
+
+/* ---------- Header y navegación ---------- */
+header {
+  background-color: var(--color-blanco);
+  padding: 15px 30px;
+  display: flex;               /* header y nav en una fila */
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;             /* para que se acomode en celulares */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); /* sombra suave abajo */
+}
+
+.logo {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.6rem;
+  color: var(--color-chocolate);
+}
+
+nav ul {
+  list-style: none;    /* quitamos los puntos de la lista */
+  display: flex;       /* menú horizontal */
+  gap: 20px;
+}
+
+nav a {
+  font-weight: bold;
+  padding: 5px 8px;
+}
+
+nav a:hover {
+  color: var(--color-acento); /* cambia de color al pasar el mouse */
+}
+
+.header-derecha {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.carrito-icono {
+  background-color: var(--color-acento);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-block;
+  background-color: var(--color-chocolate);
+  color: var(--color-blanco);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;      /* mano al pasar por encima */
+  font-size: 1rem;
+  font-family: 'Lato', Arial, sans-serif;
+}
+
+.btn:hover {
+  background-color: var(--color-texto); /* se oscurece al pasar el mouse */
+}
+
+.btn-rosa {
+  background-color: var(--color-acento);
+  color: var(--color-texto);
+}
+
+/* ---------- Sección principal (hero) ---------- */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px 30px;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.hero-texto {
+  max-width: 500px;
+}
+
+.hero-texto h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.hero-imagen {
+  font-size: 8rem; /* usamos un emoji grande como imagen del hero */
+  text-align: center;
+}
+
+/* ---------- Catálogo de productos (tarjetas) ---------- */
+.catalogo {
+  padding: 30px;
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.filtros button {
+  background-color: var(--color-blanco);
+  border: 2px solid var(--color-acento);
+  color: var(--color-texto);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.filtros button.activo {
+  background-color: var(--color-acento); /* categoría seleccionada */
+}
+
+.grid-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* tarjetas responsivas */
+  gap: 20px;
+}
+
+.tarjeta-producto {
+  background-color: var(--color-blanco);
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.tarjeta-producto .emoji-producto {
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+}
+
+.tarjeta-producto h3 {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.precio {
+  font-weight: bold;
+  color: var(--color-chocolate);
+  margin: 8px 0;
+}
+
+/* ---------- Formularios (registro, login, contacto) ---------- */
+.formulario {
+  max-width: 450px;
+  margin: 30px auto;
+  background-color: var(--color-blanco);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.campo {
+  margin-bottom: 18px;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.campo input,
+.campo textarea,
+.campo select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d8c7b8;
+  border-radius: 6px;
+  font-family: 'Lato', Arial, sans-serif;
+  font-size: 1rem;
+}
+
+/* Mensaje de error que aparece bajo cada campo cuando la validación falla */
+.mensaje-error {
+  color: #c0392b;
+  font-size: 0.85rem;
+  margin-top: 4px;
+  display: block;
+  min-height: 18px; /* reserva espacio para que el formulario no salte */
+}
+
+/* Borde rojo cuando el campo tiene un error */
+.campo input.invalido,
+.campo textarea.invalido {
+  border-color: #c0392b;
+}
+
+/* ---------- Carrito de compras ---------- */
+.item-carrito {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-blanco);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.item-carrito .cantidad-controles button {
+  background-color: var(--color-acento);
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.resumen-carrito {
+  background-color: var(--color-blanco);
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  background-color: var(--color-chocolate);
+  color: var(--color-blanco);
+  text-align: center;
+  padding: 25px;
+  margin-top: 40px;
+}
+
+footer a {
+  color: var(--color-acento);
+}
+
+/* ---------- Diseño adaptable a pantallas pequeñas ---------- */
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column; /* menú en columna en celulares */
+    text-align: center;
+  }
+  header {
+    flex-direction: column;
+  }
+}
