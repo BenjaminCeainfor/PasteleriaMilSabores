@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- que la página se vea bien en celulares -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pastelería Mil Sabores</title>
+  <!-- hoja de estilos externa, enlazada igual en todas las páginas -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- fuentes de Google Fonts que pide la propuesta de diseño -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato&family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- encabezado con logo y menú de navegación, se repite en todas las páginas -->
+  <header>
+    <div class="logo">Pastelería Mil Sabores</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="blogs.html">Blogs</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="header-derecha">
+      <a href="login.html">Iniciar sesión</a>
+      <a href="registro.html">Registrarse</a>
+      <!-- carrito con contador que actualiza carrito.js -->
+      <a class="carrito-icono" href="carrito.html">🛒 <span id="contador-carrito">0</span></a>
+    </div>
+  </header>
+
+  <!-- contenido principal de la página de inicio -->
+  <main>
+    <!-- sección hero: imagen/información de la tienda -->
+    <section class="hero">
+      <div class="hero-texto">
+        <h1>Celebra la dulzura de la vida</h1>
+        <p>Hace 50 años endulzamos momentos especiales con tortas y productos de repostería hechos con dedicación. Descubre nuestra tienda online y arma tu pedido en pocos clics.</p>
+        <br>
+        <a class="btn" href="productos.html">Ver productos</a>
+      </div>
+      <div class="hero-imagen">🎂</div>
+    </section>
+
+    <!-- lista de productos destacados (usa el mismo grid del catálogo) -->
+    <section class="catalogo">
+      <h2>Algunos de nuestros productos</h2>
+      <br>
+      <div class="grid-productos" id="grid-productos"></div>
+    </section>
+  </main>
+
+  <!-- pie de página con datos de contacto, se repite en todas las páginas -->
+  <footer>
+    <p>Pastelería Mil Sabores &copy; 2026 - Celebrando 50 años de tradición</p>
+    <p>Síguenos: <a href="#">Instagram</a> · <a href="#">Facebook</a></p>
+  </footer>
+
+  <!-- scripts al final del body para que el HTML cargue primero -->
+  <script src="js/productos.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/validaciones.js"></script>
+  <script>
+    // en el home mostramos el catálogo completo, sin filtrar
+    mostrarProductos();
+  </script>
+</body>
+</html>

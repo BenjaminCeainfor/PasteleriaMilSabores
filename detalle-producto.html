@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle del producto - Pastelería Mil Sabores</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lato&family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="logo">Pastelería Mil Sabores</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="blogs.html">Blogs</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="header-derecha">
+      <a href="login.html">Iniciar sesión</a>
+      <a href="registro.html">Registrarse</a>
+      <a class="carrito-icono" href="carrito.html">🛒 <span id="contador-carrito">0</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="catalogo" id="detalle-producto">
+      <!-- productos.js llena este bloque según el producto elegido en el catálogo -->
+      <p>Cargando producto...</p>
+    </section>
+
+  </main>
+  <footer>
+    <p>Pastelería Mil Sabores &copy; 2026 - Celebrando 50 años de tradición</p>
+    <p>Síguenos: <a href="#">Instagram</a> · <a href="#">Facebook</a></p>
+  </footer>
+
+  <script src="js/productos.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/validaciones.js"></script>
+  <script>
+    // lee el "id" del producto desde la URL y muestra su información
+    mostrarDetalleProducto();
+  </script>
+</body>
+</html>
