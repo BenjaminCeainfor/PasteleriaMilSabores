@@ -213,10 +213,143 @@ function inicializarValidacionContacto() {
   });
 }
 
-// Al cargar cualquier página, activamos las validaciones que correspondan
-// (cada función revisa primero si su formulario existe en esa página)
-document.addEventListener("DOMContentLoaded", function () {
-  inicializarValidacionLogin();
-  inicializarValidacionRegistro();
-  inicializarValidacionContacto();
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ==========================================
+  // 1. VALIDACIÓN FORMULARIO LOGIN
+  // ==========================================
+  const formLogin = document.getElementById('form-login');
+  if (formLogin) {
+    formLogin.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const correo = document.getElementById('login-correo');
+      const clave = document.getElementById('login-clave');
+
+      const errorCorreo = document.getElementById('error-login-correo');
+      const errorClave = document.getElementById('error-login-clave');
+
+      let esValido = true;
+      limpiarErrores([errorCorreo, errorClave]);
+
+      if (correo.value.trim() === '') {
+        errorCorreo.textContent = 'El correo es obligatorio.';
+        esValido = false;
+      }
+
+      if (clave.value.trim() === '') {
+        errorClave.textContent = 'La contraseña es obligatoria.';
+        esValido = false;
+      }
+
+      if (esValido) {
+        alert('¡Inicio de sesión exitoso!');
+        // formLogin.submit();
+      }
+    });
+  }
+
+
+  // ==========================================
+  // 2. VALIDACIÓN FORMULARIO REGISTRO
+  // ==========================================
+  const formRegistro = document.getElementById('form-registro');
+  if (formRegistro) {
+    formRegistro.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const nombre = document.getElementById('reg-nombre');
+      const correo = document.getElementById('reg-correo');
+      const clave = document.getElementById('reg-clave');
+      const confirmarClave = document.getElementById('reg-confirmar-clave');
+
+      const errorNombre = document.getElementById('error-reg-nombre');
+      const errorCorreo = document.getElementById('error-reg-correo');
+      const errorClave = document.getElementById('error-reg-clave');
+      const errorConfirmarClave = document.getElementById('error-reg-confirmar-clave');
+
+      let esValido = true;
+      limpiarErrores([errorNombre, errorCorreo, errorClave, errorConfirmarClave]);
+
+      if (nombre.value.trim() === '') {
+        errorNombre.textContent = 'El nombre completo es obligatorio.';
+        esValido = false;
+      }
+
+      if (correo.value.trim() === '') {
+        errorCorreo.textContent = 'El correo es obligatorio.';
+        esValido = false;
+      }
+
+      if (clave.value.trim() === '') {
+        errorClave.textContent = 'La contraseña es obligatoria.';
+        esValido = false;
+      }
+
+      if (confirmarClave.value.trim() === '') {
+        errorConfirmarClave.textContent = 'Debes confirmar la contraseña.';
+        esValido = false;
+      } else if (clave.value.trim() !== '' && clave.value !== confirmarClave.value) {
+        errorConfirmarClave.textContent = 'Las contraseñas no coinciden.';
+        esValido = false;
+      }
+
+      if (esValido) {
+        alert('¡Registro completado con éxito!');
+        // formRegistro.submit();
+      }
+    });
+  }
+
+
+  // ==========================================
+  // 3. VALIDACIÓN FORMULARIO CONTACTO
+  // ==========================================
+  const formContacto = document.getElementById('form-contacto');
+  if (formContacto) {
+    formContacto.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const nombre = document.getElementById('contacto-nombre');
+      const correo = document.getElementById('contacto-correo');
+      const asunto = document.getElementById('contacto-asunto');
+      const mensaje = document.getElementById('contacto-mensaje');
+
+      const errorNombre = document.getElementById('error-contacto-nombre');
+      const errorCorreo = document.getElementById('error-contacto-correo');
+      const errorAsunto = document.getElementById('error-contacto-asunto');
+      const errorMensaje = document.getElementById('error-contacto-mensaje');
+
+      let esValido = true;
+      limpiarErrores([errorNombre, errorCorreo, errorAsunto, errorMensaje]);
+
+      if (nombre.value.trim() === '') {
+        errorNombre.textContent = 'El nombre es obligatorio.';
+        esValido = false;
+      }
+
+      if (asunto.value.trim() === '') {
+        errorAsunto.textContent = 'El asunto es obligatorio.';
+        esValido = false;
+      }
+
+      if (mensaje.value.trim() === '') {
+        errorMensaje.textContent = 'El mensaje no puede estar vacío.';
+        esValido = false;
+      }
+
+      if (esValido) {
+        alert('¡Mensaje enviado con éxito!');
+        // formContacto.submit();
+      }
+    });
+  }
+
+  // Función auxiliar para borrar mensajes previos
+  function limpiarErrores(elementos) {
+    elementos.forEach(el => {
+      if (el) el.textContent = '';
+    });
+  }
+
 });
