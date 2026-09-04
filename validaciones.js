@@ -23,129 +23,9 @@ function limpiarError(idSpanError, idCampo) {
 
 // Revisa que el correo termine en uno de los dominios permitidos por el caso
 function correoValido(correo) {
-  const dominiosPermitidos = ["@duoc.cl", "@profesor.duoc.cl", "@gmail.com"];
-  // some() revisa si AL MENOS uno de los dominios calza con el final del correo
+  const dominiosPermitidos = ["@duocuc.cl", "@profesor.duoc.cl", "@gmail.com"];
   return dominiosPermitidos.some(function (dominio) {
     return correo.toLowerCase().endsWith(dominio);
-  });
-}
-
-// ---------- Validación del formulario de INICIO DE SESIÓN ----------
-function inicializarValidacionLogin() {
-  const formulario = document.getElementById("form-login");
-  if (!formulario) return; // esta página no tiene el formulario de login
-
-  formulario.addEventListener("submit", function (evento) {
-    evento.preventDefault(); // evitamos que la página se recargue
-    let formularioValido = true;
-
-    const correo = document.getElementById("login-correo").value.trim();
-    const clave = document.getElementById("login-clave").value;
-
-    // el correo no puede estar vacío
-    if (correo === "") {
-      mostrarError("error-login-correo", "login-correo", "Debes ingresar tu correo.");
-      formularioValido = false;
-    } else if (correo.length > 100) {
-      mostrarError("error-login-correo", "login-correo", "El correo es demasiado largo (máx. 100 caracteres).");
-      formularioValido = false;
-    } else if (!correoValido(correo)) {
-      mostrarError("error-login-correo", "login-correo", "Usa un correo @duoc.cl, @profesor.duoc.cl o @gmail.com.");
-      formularioValido = false;
-    } else {
-      limpiarError("error-login-correo", "login-correo");
-    }
-
-    // la contraseña debe tener entre 4 y 10 caracteres
-    if (clave === "") {
-      mostrarError("error-login-clave", "login-clave", "Debes ingresar tu contraseña.");
-      formularioValido = false;
-    } else if (clave.length < 4 || clave.length > 10) {
-      mostrarError("error-login-clave", "login-clave", "La contraseña debe tener entre 4 y 10 caracteres.");
-      formularioValido = false;
-    } else {
-      limpiarError("error-login-clave", "login-clave");
-    }
-
-    // si todo salió bien, avisamos y simulamos el ingreso (no hay backend todavía)
-    if (formularioValido) {
-      alert("Bienvenido/a a Pastelería Mil Sabores.");
-      formulario.reset();
-    }
-  });
-}
-
-// ---------- Validación del formulario de REGISTRO ----------
-function inicializarValidacionRegistro() {
-  const formulario = document.getElementById("form-registro");
-  if (!formulario) return;
-
-  formulario.addEventListener("submit", function (evento) {
-    evento.preventDefault();
-    let formularioValido = true;
-
-    const nombre = document.getElementById("registro-nombre").value.trim();
-    const correo = document.getElementById("registro-correo").value.trim();
-    const clave = document.getElementById("registro-clave").value;
-    const claveConfirmar = document.getElementById("registro-clave-confirmar").value;
-    const fechaNacimiento = document.getElementById("registro-fecha-nacimiento").value;
-
-    // nombre obligatorio, máximo 50 caracteres
-    if (nombre === "") {
-      mostrarError("error-registro-nombre", "registro-nombre", "Debes ingresar tu nombre completo.");
-      formularioValido = false;
-    } else if (nombre.length > 50) {
-      mostrarError("error-registro-nombre", "registro-nombre", "El nombre no puede superar los 50 caracteres.");
-      formularioValido = false;
-    } else {
-      limpiarError("error-registro-nombre", "registro-nombre");
-    }
-
-    // correo obligatorio y con dominio permitido
-    if (correo === "") {
-      mostrarError("error-registro-correo", "registro-correo", "Debes ingresar tu correo.");
-      formularioValido = false;
-    } else if (!correoValido(correo)) {
-      mostrarError("error-registro-correo", "registro-correo", "Usa un correo @duoc.cl, @profesor.duoc.cl o @gmail.com.");
-      formularioValido = false;
-    } else {
-      limpiarError("error-registro-correo", "registro-correo");
-    }
-
-    // contraseña entre 4 y 10 caracteres
-    if (clave.length < 4 || clave.length > 10) {
-      mostrarError("error-registro-clave", "registro-clave", "La contraseña debe tener entre 4 y 10 caracteres.");
-      formularioValido = false;
-    } else {
-      limpiarError("error-registro-clave", "registro-clave");
-    }
-
-    // la confirmación debe ser idéntica a la contraseña
-    if (claveConfirmar !== clave || claveConfirmar === "") {
-      mostrarError("error-registro-clave-confirmar", "registro-clave-confirmar", "Las contraseñas no coinciden.");
-      formularioValido = false;
-    } else {
-      limpiarError("error-registro-clave-confirmar", "registro-clave-confirmar");
-    }
-
-    // fecha de nacimiento obligatoria (se usa para el descuento de mayores de 50 años)
-    if (fechaNacimiento === "") {
-      mostrarError("error-registro-fecha", "registro-fecha-nacimiento", "Debes ingresar tu fecha de nacimiento.");
-      formularioValido = false;
-    } else {
-      limpiarError("error-registro-fecha", "registro-fecha-nacimiento");
-    }
-
-    if (formularioValido) {
-      // avisamos si el usuario califica para el descuento por edad, como sugerencia dinámica
-      const edad = calcularEdad(fechaNacimiento);
-      let mensajeBienvenida = "¡Registro exitoso! Bienvenido/a a Pastelería Mil Sabores.";
-      if (edad >= 50) {
-        mensajeBienvenida += " Por ser mayor de 50 años, tienes un 50% de descuento en todos los productos.";
-      }
-      alert(mensajeBienvenida);
-      formulario.reset();
-    }
   });
 }
 
@@ -163,54 +43,6 @@ function calcularEdad(fechaTexto) {
     edad = edad - 1;
   }
   return edad;
-}
-
-// ---------- Validación del formulario de CONTACTO ----------
-function inicializarValidacionContacto() {
-  const formulario = document.getElementById("form-contacto");
-  if (!formulario) return;
-
-  formulario.addEventListener("submit", function (evento) {
-    evento.preventDefault();
-    let formularioValido = true;
-
-    const nombre = document.getElementById("contacto-nombre").value.trim();
-    const correo = document.getElementById("contacto-correo").value.trim();
-    const mensaje = document.getElementById("contacto-mensaje").value.trim();
-
-    if (nombre === "") {
-      mostrarError("error-contacto-nombre", "contacto-nombre", "Cuéntanos tu nombre.");
-      formularioValido = false;
-    } else if (nombre.length > 100) {
-      mostrarError("error-contacto-nombre", "contacto-nombre", "El nombre no puede superar los 100 caracteres.");
-      formularioValido = false;
-    } else {
-      limpiarError("error-contacto-nombre", "contacto-nombre");
-    }
-
-    if (correo !== "" && !correoValido(correo)) {
-      // el correo es opcional en contacto, pero si lo escriben debe ser válido
-      mostrarError("error-contacto-correo", "contacto-correo", "Ese correo no parece válido, revísalo.");
-      formularioValido = false;
-    } else {
-      limpiarError("error-contacto-correo", "contacto-correo");
-    }
-
-    if (mensaje === "") {
-      mostrarError("error-contacto-mensaje", "contacto-mensaje", "Escríbenos tu consulta antes de enviar.");
-      formularioValido = false;
-    } else if (mensaje.length > 500) {
-      mostrarError("error-contacto-mensaje", "contacto-mensaje", "El mensaje no puede superar los 500 caracteres.");
-      formularioValido = false;
-    } else {
-      limpiarError("error-contacto-mensaje", "contacto-mensaje");
-    }
-
-    if (formularioValido) {
-      alert("¡Gracias por escribirnos! Te responderemos pronto.");
-      formulario.reset();
-    }
-  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -258,18 +90,22 @@ document.addEventListener('DOMContentLoaded', () => {
     formRegistro.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const nombre = document.getElementById('reg-nombre');
-      const correo = document.getElementById('reg-correo');
-      const clave = document.getElementById('reg-clave');
-      const confirmarClave = document.getElementById('reg-confirmar-clave');
+      const nombre = document.getElementById('registro-nombre');
+      const correo = document.getElementById('registro-correo');
+      const clave = document.getElementById('registro-clave');
+      const confirmarClave = document.getElementById('registro-clave-confirmar');
+      const fechaNacimiento = document.getElementById('registro-fecha-nacimiento');
+      const codigo = document.getElementById('registro-codigo');
 
-      const errorNombre = document.getElementById('error-reg-nombre');
-      const errorCorreo = document.getElementById('error-reg-correo');
-      const errorClave = document.getElementById('error-reg-clave');
-      const errorConfirmarClave = document.getElementById('error-reg-confirmar-clave');
+      const errorNombre = document.getElementById('error-registro-nombre');
+      const errorCorreo = document.getElementById('error-registro-correo');
+      const errorClave = document.getElementById('error-registro-clave');
+      const errorConfirmarClave = document.getElementById('error-registro-clave-confirmar');
+      const errorFechaNacimiento = document.getElementById('error-registro-fecha');
+      const errorCodigo = document.getElementById('error-registro-codigo');
 
       let esValido = true;
-      limpiarErrores([errorNombre, errorCorreo, errorClave, errorConfirmarClave]);
+      limpiarErrores([errorNombre, errorCorreo, errorClave, errorConfirmarClave, errorFechaNacimiento, errorCodigo]);
 
       if (nombre.value.trim() === '') {
         errorNombre.textContent = 'El nombre completo es obligatorio.';
@@ -278,6 +114,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (correo.value.trim() === '') {
         errorCorreo.textContent = 'El correo es obligatorio.';
+        esValido = false;
+      } else if (!correoValido(correo.value.trim())) {
+        errorCorreo.textContent = 'El correo debe terminar en @duocuc.cl, @profesor.duoc.cl o @gmail.com.';
         esValido = false;
       }
 
@@ -294,9 +133,20 @@ document.addEventListener('DOMContentLoaded', () => {
         esValido = false;
       }
 
+      if (fechaNacimiento.value.trim() === '') {
+        errorFechaNacimiento.textContent = 'La fecha de nacimiento es obligatoria.';
+        esValido = false;
+      }
       if (esValido) {
-        alert('¡Registro completado con éxito!');
-        // formRegistro.submit();
+        const edad = calcularEdad(fechaNacimiento.value);
+        let mensajeBienvenida = "¡Registro exitoso! Bienvenido/a a Pastelería Mil Sabores.";
+        if (edad >= 50) {
+          mensajeBienvenida += " Por ser mayor de 50 años, tienes un 50% de descuento en todos los productos.";
+        }
+        if (codigo.value.trim() === 'FELICES50') {
+          mensajeBienvenida += " Además, aplicaste el código de descuento FELICES50, ¡disfruta tu descuento adicional!";
+        }
+      alert(mensajeBienvenida);
       }
     });
   }
@@ -312,24 +162,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const nombre = document.getElementById('contacto-nombre');
       const correo = document.getElementById('contacto-correo');
-      const asunto = document.getElementById('contacto-asunto');
       const mensaje = document.getElementById('contacto-mensaje');
 
       const errorNombre = document.getElementById('error-contacto-nombre');
       const errorCorreo = document.getElementById('error-contacto-correo');
-      const errorAsunto = document.getElementById('error-contacto-asunto');
       const errorMensaje = document.getElementById('error-contacto-mensaje');
 
       let esValido = true;
-      limpiarErrores([errorNombre, errorCorreo, errorAsunto, errorMensaje]);
+      limpiarErrores([errorNombre, errorCorreo, errorMensaje]);
 
       if (nombre.value.trim() === '') {
         errorNombre.textContent = 'El nombre es obligatorio.';
         esValido = false;
       }
 
-      if (asunto.value.trim() === '') {
-        errorAsunto.textContent = 'El asunto es obligatorio.';
+      if (correo.value.trim() !== '' && !correoValido(correo.value.trim())) {
+        errorCorreo.textContent = 'El correo debe terminar en @duocuc.cl, @profesor.duoc.cl o @gmail.com.';
         esValido = false;
       }
 
@@ -339,13 +187,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (esValido) {
-        alert('¡Mensaje enviado con éxito!');
+        alert('¡Mensaje enviado con éxito!, nos pondremos en contacto contigo pronto.');
         // formContacto.submit();
       }
     });
   }
 
-  // Función auxiliar para borrar mensajes previos
   function limpiarErrores(elementos) {
     elementos.forEach(el => {
       if (el) el.textContent = '';

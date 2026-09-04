@@ -19,9 +19,7 @@ const productos = [
   { id: "TE001", categoria: "Tortas Especiales", nombre: "Torta Especial de Cumpleaños", precio: 55000, emoji: "🎉", descripcion: "Diseñada especialmente para celebraciones, con mensaje incluido." },
 ];
 
-// Formatea un número como precio chileno, ejemplo: 45000 -> $45.000
 function formatearPrecio(numero) {
-  // toLocaleString agrega los puntos de miles usando el formato de Chile
   return "$" + numero.toLocaleString("es-CL");
 }
 
@@ -70,7 +68,6 @@ function mostrarFiltros() {
       boton.className = "activo"; // el filtro "Todos" empieza seleccionado
     }
 
-    // al hacer clic, mostramos solo los productos de esa categoría
     boton.addEventListener("click", function () {
       // sacamos la clase "activo" de todos los botones y se la ponemos solo a este
       document.querySelectorAll("#filtros button").forEach(function (b) {
